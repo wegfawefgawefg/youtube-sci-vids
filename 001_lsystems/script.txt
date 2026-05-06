@@ -1,0 +1,209 @@
+recently while i was banging ur mom i was thinking about lsystems. 
+which is how you say system in spanish.  
+l system is that babbys first fractal thing where youve got some 
+letters and a rule where you go through the letters and swap them out 
+
+rule:
+A -> AB
+B -> BA
+
+start with: A
+A
+AB
+ABBA
+ABBABAAB
+ABBABAABBAABABBA
+ABBABAABBAABABBABAABBAAB
+....
+
+
+so thats cool and you can make trees and stuff.  
+(show some fractals, trees etc)
+so anyways im balls depot in ur mom and i was like
+el systeme is like the same thing as CA, and compilers, like graph substitution/expansion. 
+
+cuz like a CA is just an output encoding for an el system. 
+consider
+
+youve got like alive/dead, and then a 9d kernel right. 
+basically you can encode a ca into an l system
+but the rule gets splayed out into a table and thats kinda lame.
+cuz summation rules are common and look cool cuz nature does locality summation 
+so you get natural shit if you do neighborhood summation. it approximates info nearby being 
+aggregated right
+
+but then a table is a very verbose way to represent any rule. 
+so then i was lilke woah what if you look at all the functions table forms, 
+then, how many entries does your table need, and then each operation sort of consumes a fraction of
+the full table. then you can rank the operations based on the table right. 
+group them categorize them. how many rules are there. some factorial something or other. 
+
+okay so like el systems right. 
+what about graphs. 
+oh but then el systeematically the same thing as finite automata but you lelt the states grow. its like a state interpolator. 
+
+basically l system is a broader family. big papa. 
+
+and what if its like a 2d l system.
+
+rule:
+AA -> A
+AB -> AAB
+BA -> BBA
+BB -> B
+
+start:
+ABBA
+AABBBA
+etc
+
+how can we do that in a 1d. 
+well we can first rewrite the letters in pairs
+
+ABBA becomes
+AB, BB, BA
+
+then we take each unique pair and assign it a new letter.
+
+AB -> C
+BB -> D
+BA -> E
+
+so now we have a new alphabet of C, D, E.
+and we can rewrite the rules in terms of these new letters.
+C -> AB
+D -> BB
+E -> BA
+
+so we represent the original 2d l system as a 1d l system with a new alphabet and new rules.
+execute the 1d equivalent
+then translate back to the original alphabet to get the 2d l system output.
+
+and you can do this for arbitrary dimensions.
+
+so maybe theres not something there this is just 
+el system risc vs cisc. 
+
+what if we add numbers in there like continuous
+i could think of two ways
+1 is just smashing some numbers into the rule so its like
+parametric trash
+
+
+A(x) -> B(x * 0.5) B(x * 0.5)
+A(1.0)
+B(0.5) B(0.5)
+
+and you can add conditions in that shit
+A(x) : x > 0.1 -> F(x) [ + A(x * 0.6) ] [ - A(x * 0.4) ]
+A(x) : x <= 0.1 -> F(x)
+
+A(1.0)
+F(1.0) [ + A(0.6) ] [ - A(0.4) ]
+
+F(1.0)
+[ + F(0.6) [ + A(0.36) ] [ - A(0.24) ] ]
+[ - F(0.4) [ + A(0.24) ] [ - A(0.16) ] ]
+
+in this case its any random real number function but then theyve got these
+letters in here which are just tags and probably just for the specific system they want to  
+bias the function for like
+
+Bud(age, energy) : age >= 5 && energy > 0.2
+    -> Stem(energy * 0.7) [ + Bud(0, energy * 0.3) ]
+
+Bud(age, energy) : age < 5
+    -> Bud(age + 1, energy)
+
+    like were generating a trees
+
+A is a root
+B is branch mode 
+C is a leaf or something like that. come up with as many arbitrary divisiosn you want
+whatever. 
+
+idk why i dont find this super math interesting? bc its too expressive
+i mean nature took this shit and made embryos develop like this right. 
+
+one cell. 
+cell split. 
+cells follow context driven nearby cell rules
+
+your mom is an el system. fight the system man
+
+
+im lookin for that rule apllpied but remains constrained fix. 
+i didnt like algebra. get these letters out  of my numbers ew. disgusting. 
+
+i mean what if you have a stateful l system where we allow the current state to also 
+define the rule??
+great babbage eating cabbage. 
+thats a computer. and you could start yourself with a tape of infinite A's
+and the index index'es the rule? oh shit thats function memory. 
+but wheres the index stored, oh okay
+ABCDEFGH.... ah fuck we just remade the ordinals again.
+ordinary ordinals. 
+its all a computer ur a computer. im a computer. the cosmos. we are made of computer stuff
+
+and we have infinity design space and we need dice god, natural selection save us. 
+faster iteration, better sensors. 
+
+okay thats enough. 
+lets get these nasty letters out of my face it tastes bad. 
+
+numbers pure el system but numbers only
+
+Example:
+1.0
+1.0 -> [0.6, 0.4]
+
+rule:
+f(x) -> [f(x * 0.6), f(x * 0.4)]
+
+so then next would be 
+
+[0.6, 0.4] -> [0.36, 0.24, 0.24, 0.16]
+[0.36, 0.24, 0.24, 0.16] -> [0.216, 0.144, 0.144, 0.096, 0.144, 0.096, 0.096, 0.064]
+
+oh so the leftmost number is 
+lim 0.6^n * x0
+and the right is
+lim 0.4^n * x0
+
+
+and the stuff inbetween must be values between those right. 
+weve got a squashed thing
+what does this look like
+is it a smooth line
+is this just itterated fractions but longer
+
+graph
+
+ah shit its just a fractal. a dragon curve
+we tried to get away from the tree, but what we have is the leaves
+why does it look like this anyways
+
+why wouldnt the lefter side be more 0.6 so bigger, and the righter side by more 0.4 so smaller??
+
+well i think its because earlier applications of the rule make a bigger difference than later ones implicitly
+
+and we can do this in 3d too right. or 4d with projections. 
+
+im getting bored of el system now. 
+you could do true continues with space division or something?
+
+like
+
+0.0-1.0 -> 0.0-0.2a,0.2-1.0b?
+i think this ends up going the same way though. 
+
+and were not gonna find pi in here or something. like this isnt just aim the fractal subpath 
+itterated fraction equivalence, cuz the path index complexity is equal to the amount of
+information in the number right. 
+
+
+
+
+
+what if we chain the numbers? so it loops around. will we have boundary aliasing? 
+2 rule -> 3 rule? then well get an expanding loop?
