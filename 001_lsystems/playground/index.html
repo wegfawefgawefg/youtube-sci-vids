@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pure Number L-System Scanner</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="viewer">
+        <canvas id="fractalCanvas" aria-label="Pure number L-system fractal viewer"></canvas>
+        <div class="hud">
+          <div>
+            <span class="hud-label">nodes</span>
+            <strong id="nodeCount">0</strong>
+          </div>
+          <div>
+            <span class="hud-label">range</span>
+            <strong id="valueRange">0 to 0</strong>
+          </div>
+          <div>
+            <span class="hud-label">rule</span>
+            <strong id="ruleText">x -> ax, bx</strong>
+          </div>
+        </div>
+      </section>
+
+      <aside class="controls" aria-label="L-system controls">
+        <div class="control-header">
+          <h1>Pure Number L-System</h1>
+          <p>f(x) -> [f(a*x), f(b*x)]</p>
+        </div>
+
+        <label class="control-row">
+          <span>Depth</span>
+          <output id="depthValue">10</output>
+          <input id="depth" type="range" min="1" max="15" step="1" value="10">
+        </label>
+
+        <label class="control-row">
+          <span>a multiplier</span>
+          <output id="leftValue">0.60</output>
+          <input id="leftMul" type="range" min="0.05" max="0.98" step="0.01" value="0.60">
+        </label>
+
+        <label class="control-row">
+          <span>b multiplier</span>
+          <output id="rightValue">0.40</output>
+          <input id="rightMul" type="range" min="0.05" max="0.98" step="0.01" value="0.40">
+        </label>
+
+        <label class="control-row">
+          <span>Branch angle</span>
+          <output id="angleValue">42 deg</output>
+          <input id="angle" type="range" min="0" max="170" step="1" value="42">
+        </label>
+
+        <label class="control-row">
+          <span>Length scale</span>
+          <output id="scaleValue">120</output>
+          <input id="scale" type="range" min="30" max="240" step="1" value="120">
+        </label>
+
+        <label class="control-row">
+          <span>Turn bias</span>
+          <output id="biasValue">0 deg</output>
+          <input id="bias" type="range" min="-90" max="90" step="1" value="0">
+        </label>
+
+        <label class="control-row">
+          <span>Prune below</span>
+          <output id="pruneValue">0.000</output>
+          <input id="prune" type="range" min="0" max="0.08" step="0.001" value="0">
+        </label>
+
+        <fieldset class="mode-group">
+          <legend>Render</legend>
+          <label><input type="radio" name="mode" value="branches" checked> Branches</label>
+          <label><input type="radio" name="mode" value="points"> Points</label>
+          <label><input type="radio" name="mode" value="both"> Both</label>
+        </fieldset>
+
+        <div class="toggle-row">
+          <label><input id="sequenceOverlay" type="checkbox" checked> Leaf sequence strip</label>
+          <label><input id="scan" type="checkbox"> Scan params</label>
+        </div>
+
+        <div class="button-row">
+          <button id="reset" type="button">Reset</button>
+          <button id="randomize" type="button">Randomize</button>
+        </div>
+      </aside>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
+

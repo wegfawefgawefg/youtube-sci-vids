@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>3D Number L-System Mesh Scanner</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="stage">
+        <canvas id="meshCanvas" aria-label="3D number L-system mesh viewer"></canvas>
+        <div id="statusPanel" class="load-status">Loading Three.js CDN script...</div>
+        <div class="hud">
+          <div><span>vertices</span><strong id="vertexCount">0</strong></div>
+          <div><span>faces</span><strong id="faceCount">0</strong></div>
+          <div><span>rule</span><strong id="ruleText">x -> ax, bx</strong></div>
+        </div>
+      </section>
+
+      <aside class="controls" aria-label="Mesh controls">
+        <div class="title-block">
+          <h1>3D Mesh Scanner</h1>
+          <p id="formulaText">Sx = .44 + .56*abs(sin(freq*x + phase))</p>
+        </div>
+
+        <fieldset class="mode-group">
+          <legend>Rule</legend>
+          <label><input type="radio" name="ruleMode" value="sine" checked> Sine folded</label>
+          <label><input type="radio" name="ruleMode" value="product"> Product</label>
+        </fieldset>
+
+        <label class="control-row">
+          <span>Depth</span>
+          <output id="depthValue">9</output>
+          <input id="depth" type="range" min="1" max="13" step="1" value="9">
+        </label>
+
+        <label class="control-row">
+          <span>a multiplier</span>
+          <output id="leftValue">0.66</output>
+          <input id="leftMul" type="range" min="0.12" max="0.96" step="0.01" value="0.66">
+        </label>
+
+        <label class="control-row">
+          <span>b multiplier</span>
+          <output id="rightValue">0.52</output>
+          <input id="rightMul" type="range" min="0.12" max="0.96" step="0.01" value="0.52">
+        </label>
+
+        <label class="control-row">
+          <span>Sine freq</span>
+          <output id="sineFreqValue">6.2</output>
+          <input id="sineFreq" type="range" min="0.2" max="18" step="0.1" value="6.2">
+        </label>
+
+        <label class="control-row">
+          <span>Spread</span>
+          <output id="spreadValue">44 deg</output>
+          <input id="spread" type="range" min="0" max="155" step="1" value="44">
+        </label>
+
+        <label class="control-row">
+          <span>Twist</span>
+          <output id="twistValue">137 deg</output>
+          <input id="twist" type="range" min="-180" max="180" step="1" value="137">
+        </label>
+
+        <label class="control-row">
+          <span>Curl</span>
+          <output id="curlValue">16 deg</output>
+          <input id="curl" type="range" min="-85" max="85" step="1" value="16">
+        </label>
+
+        <label class="control-row">
+          <span>Length</span>
+          <output id="lengthValue">4.6</output>
+          <input id="lengthScale" type="range" min="1.2" max="8" step="0.1" value="4.6">
+        </label>
+
+        <label class="control-row">
+          <span>Radius</span>
+          <output id="radiusValue">0.20</output>
+          <input id="radiusScale" type="range" min="0.04" max="0.48" step="0.01" value="0.20">
+        </label>
+
+        <label class="control-row">
+          <span>Tube sides</span>
+          <output id="sidesValue">8</output>
+          <input id="sides" type="range" min="4" max="14" step="1" value="8">
+        </label>
+
+        <fieldset class="mode-group">
+          <legend>View</legend>
+          <label><input type="radio" name="viewMode" value="solid" checked> Solid</label>
+          <label><input type="radio" name="viewMode" value="wire"> Wire</label>
+          <label><input type="radio" name="viewMode" value="ghost"> Ghost</label>
+        </fieldset>
+
+        <div class="toggle-row">
+          <label><input id="leaves" type="checkbox" checked> Leaves</label>
+          <label><input id="autoRotate" type="checkbox" checked> Rotate</label>
+          <label><input id="scan" type="checkbox"> Scan params</label>
+        </div>
+
+        <div class="button-row">
+          <button id="reset" type="button">Reset</button>
+          <button id="randomize" type="button">Randomize</button>
+          <button id="exportObj" type="button">Export OBJ</button>
+        </div>
+      </aside>
+    </main>
+
+    <script>
+      const showLoadError = (message) => {
+        const panel = document.querySelector("#statusPanel");
+        if (panel) {
+          panel.classList.add("is-error");
+          panel.textContent = message;
+        }
+      };
+
+      window.addEventListener("error", (event) => {
+        showLoadError(`Load error: ${event.message}`);
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+    <script src="./app_file.js"></script>
+  </body>
+</html>

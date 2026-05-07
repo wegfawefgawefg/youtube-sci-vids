@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Coherent Numeric Surface</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.164.1/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.164.1/examples/jsm/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="stage">
+        <canvas id="surfaceCanvas" aria-label="Coherent numeric subdivision surface viewer"></canvas>
+        <div id="statusPanel" class="load-status">Loading local Three.js module...</div>
+        <div class="hud">
+          <div><span>vertices</span><strong id="vertexCount">0</strong></div>
+          <div><span>quad faces</span><strong id="faceCount">0</strong></div>
+          <div><span>topology</span><strong>uv grid adjacency</strong></div>
+        </div>
+      </section>
+
+      <aside class="controls">
+        <div class="title-block">
+          <h1>Coherent Surface</h1>
+          <p>patch -> four child patches</p>
+        </div>
+
+        <label class="control-row">
+          <span>Resolution</span>
+          <output id="nValue">160</output>
+          <input id="n" type="range" min="24" max="240" step="4" value="160">
+        </label>
+
+        <label class="control-row">
+          <span>Octaves</span>
+          <output id="octavesValue">9</output>
+          <input id="octaves" type="range" min="1" max="12" step="1" value="9">
+        </label>
+
+        <label class="control-row">
+          <span>Amplitude</span>
+          <output id="ampValue">0.55</output>
+          <input id="amp" type="range" min="0" max="1.4" step="0.01" value="0.55">
+        </label>
+
+        <label class="control-row">
+          <span>Decay</span>
+          <output id="decayValue">0.52</output>
+          <input id="decay" type="range" min="0.1" max="0.9" step="0.01" value="0.52">
+        </label>
+
+        <label class="control-row">
+          <span>Height scale</span>
+          <output id="heightValue">1.00</output>
+          <input id="heightScale" type="range" min="0.1" max="3" step="0.01" value="1">
+        </label>
+
+        <label class="control-row">
+          <span>Warp</span>
+          <output id="warpValue">1.00</output>
+          <input id="warp" type="range" min="0" max="2.4" step="0.01" value="1">
+        </label>
+
+        <label class="control-row">
+          <span>Base freq</span>
+          <output id="freqValue">1.00</output>
+          <input id="baseFreq" type="range" min="0.25" max="4" step="0.01" value="1">
+        </label>
+
+        <label class="control-row">
+          <span>Phase U</span>
+          <output id="phaseUValue">0.00</output>
+          <input id="phaseU" type="range" min="-6.283" max="6.283" step="0.01" value="0">
+        </label>
+
+        <label class="control-row">
+          <span>Phase V</span>
+          <output id="phaseVValue">0.00</output>
+          <input id="phaseV" type="range" min="-6.283" max="6.283" step="0.01" value="0">
+        </label>
+
+        <label class="control-row">
+          <span>Phase drift</span>
+          <output id="phaseDriftValue">0.00</output>
+          <input id="phaseDrift" type="range" min="-0.12" max="0.12" step="0.001" value="0">
+        </label>
+
+        <label class="control-row">
+          <span>Scan FPS</span>
+          <output id="scanFpsValue">12</output>
+          <input id="scanFps" type="range" min="1" max="30" step="1" value="12">
+        </label>
+
+        <label class="control-row">
+          <span>Scan resolution</span>
+          <output id="scanNValue">96</output>
+          <input id="scanN" type="range" min="24" max="180" step="4" value="96">
+        </label>
+
+        <fieldset class="mode-group">
+          <legend>View</legend>
+          <label><input type="radio" name="viewMode" value="solid" checked> Solid</label>
+          <label><input type="radio" name="viewMode" value="wire"> Wire</label>
+          <label><input type="radio" name="viewMode" value="ghost"> Ghost</label>
+        </fieldset>
+
+        <div class="toggle-row">
+          <label><input id="autoRotate" type="checkbox" checked> Rotate</label>
+          <label><input id="scan" type="checkbox"> Scan params</label>
+        </div>
+
+        <div class="button-row">
+          <button id="reset" type="button">Reset</button>
+          <button id="randomize" type="button">Randomize</button>
+          <button id="exportObj" type="button">Export OBJ</button>
+        </div>
+      </aside>
+    </main>
+
+    <script>
+      window.addEventListener("error", (event) => {
+        const panel = document.querySelector("#statusPanel");
+        if (panel) {
+          panel.classList.add("is-error");
+          panel.textContent = `Load error: ${event.message}`;
+        }
+      });
+    </script>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
